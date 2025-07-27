@@ -1,5 +1,6 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -39,4 +40,10 @@ app.get('/api/leaderboard', (req, res) => {
     res.json(top);
 });
 
-module.exports = app;
+// Thêm dòng này để server chạy trên Render
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}`);
+});
+
+export default app;
